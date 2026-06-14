@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prompt Fusion Discovery</title>
+    <meta
+      name="description"
+      content="Differentiable search for layer-specific prompt fusion in vision foundation models."
+    />
+    <meta property="og:title" content="Prompt Fusion Discovery" />
+    <meta
+      property="og:description"
+      content="A differentiable search framework discovers which prompt-token fusion operator each transformer layer should use, replacing one-size-fits-all visual prompt injection."
+    />
+    <meta property="og:url" content="https://xixiaouab.github.io/Prompt-Fusion-Discovery/" />
+    <meta property="og:image" content="https://xixiaouab.github.io/Prompt-Fusion-Discovery/assets/images/teaser.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Prompt Fusion Discovery" />
+    <meta
+      name="twitter:description"
+      content="A differentiable search framework discovers which prompt-token fusion operator each transformer layer should use, replacing one-size-fits-all visual prompt injection."
+    />
+    <meta name="twitter:image" content="https://xixiaouab.github.io/Prompt-Fusion-Discovery/assets/images/teaser.webp" />
+    <meta name="citation_title" content="Layer-Specific Prompt Fusion Discovery via Differentiable Search in Vision Foundation Models" />
+    <meta name="citation_author" content="Xiao, Xi" />
+    <meta name="citation_author" content="Li, Xingjian" />
+    <meta name="citation_author" content="Zhang, Yunbei" />
+    <meta name="citation_author" content="Han, Cheng" />
+    <meta name="citation_author" content="Liu, Tianming" />
+    <meta name="citation_author" content="Wang, Tianyang" />
+    <meta name="citation_author" content="Jiang, Runmin" />
+    <meta name="citation_author" content="Hamm, Jihun" />
+    <meta name="citation_author" content="Wang, Xiao" />
+    <meta name="citation_author" content="Xu, Min" />
+    <meta name="citation_publication_date" content="2026" />
+    <meta name="citation_abstract_html_url" content="https://xixiaouab.github.io/Prompt-Fusion-Discovery/" />
+    <meta name="citation_fulltext_html_url" content="https://xixiaouab.github.io/Prompt-Fusion-Discovery/" />
+    <meta name="citation_keywords" content="visual prompt tuning; differentiable architecture search; prompt fusion; vision foundation models; parameter-efficient transfer learning" />
+    <link rel="canonical" href="https://xixiaouab.github.io/Prompt-Fusion-Discovery/" />
+    <meta name="theme-color" content="#dceeff" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Serif:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css?v=4a11d5c" />
+  </head>
+  <body>
+    <main id="top">
+      <section class="hero">
+        <div class="hero-inner">
+          <h1>
+            <span>Layer-Specific Prompt Fusion</span> Discovery via Differentiable Search in Vision Foundation Models
+          </h1>
+          <p class="subtitle">
+            A differentiable search framework discovers which prompt-token fusion operator each transformer layer should use, replacing one-size-fits-all visual prompt injection.
+          </p>
+
+          <div class="authors" aria-label="Authors">
+            <p class="author-list">
+              <span class="author-line">
+                <a href="https://xixiaouab.github.io/" target="_blank" rel="noopener">Xi&nbsp;Xiao</a><sup>1</sup>,
+                <a href="https://openreview.net/profile?id=~Xingjian_Li1" target="_blank" rel="noopener">Xingjian&nbsp;Li</a><sup>2</sup>,
+                <a href="https://yunbeizhang.github.io/" target="_blank" rel="noopener">Yunbei&nbsp;Zhang</a><sup>3</sup>,
+                <a href="https://openreview.net/profile?id=~Cheng_Han1" target="_blank" rel="noopener">Cheng&nbsp;Han</a><sup>4</sup>,
+                <a href="https://openreview.net/profile?id=~Tianming_Liu3" target="_blank" rel="noopener">Tianming&nbsp;Liu</a><sup>5</sup>,
+              </span>
+              <span class="author-line">
+                <a href="https://wangt0716.github.io/index.html" target="_blank" rel="noopener">Tianyang&nbsp;Wang</a><sup>1</sup>,
+                <a href="https://openreview.net/profile?id=~Runmin_Jiang1" target="_blank" rel="noopener">Runmin&nbsp;Jiang</a><sup>2</sup>,
+                <a href="https://openreview.net/profile?id=~Jihun_Hamm2" target="_blank" rel="noopener">Jihun&nbsp;Hamm</a><sup>3</sup>,
+                <a href="https://openreview.net/profile?id=~Xiao_Wang21" target="_blank" rel="noopener">Xiao&nbsp;Wang</a><sup>6</sup>,
+                <a href="https://openreview.net/profile?id=~Min_Xu4" target="_blank" rel="noopener">Min&nbsp;Xu</a><sup>2</sup>
+              </span>
+            </p>
+            <p class="affiliations">
+              <sup>1</sup>University of Alabama at Birmingham &middot;
+              <sup>2</sup>Carnegie Mellon University &middot;
+              <sup>3</sup>Tulane University &middot;
+              <sup>4</sup>University of Missouri-Kansas City &middot;
+              <sup>5</sup>Georgia&nbsp;State&nbsp;University &middot;
+              <sup>6</sup>Oak Ridge National Laboratory
+            </p>
+          </div>
+
+          <div class="button-row" aria-label="Project links">
+            <a class="button button-disabled" aria-disabled="true" title="Paper PDF coming soon">
+              <span class="button-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm8 1.5V8h4.5L14 3.5ZM8 12h3a2.5 2.5 0 0 1 0 5H9v2H8v-7Zm1 1v3h2a1.5 1.5 0 0 0 0-3H9Zm6 0h1.6c1.9 0 3.2 1.2 3.2 3s-1.3 3-3.2 3H15v-6Zm1 1v4h.6c1.3 0 2.1-.8 2.1-2s-.8-2-2.1-2H16Z"/></svg>
+              </span>
+              <span>Paper coming soon</span>
+            </a>
+            <a class="button button-disabled" aria-disabled="true" title="Code release coming soon">
+              <span class="button-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="m8.7 16.6-5-4.6 5-4.6 1.3 1.4L6.5 12l3.5 3.2-1.3 1.4Zm6.6 0L14 15.2l3.5-3.2L14 8.8l1.3-1.4 5 4.6-5 4.6ZM11.1 19l-1.9-.6L12.9 5l1.9.6L11.1 19Z"/></svg>
+              </span>
+              <span>Code coming soon</span>
+            </a>
+            <a class="button" href="https://github.com/xixiaouab/Prompt-Fusion-Discovery" target="_blank" rel="noopener">
+              <span class="button-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 .8A11.2 11.2 0 0 0 .8 12c0 5 3.3 9.2 7.8 10.7.6.1.8-.2.8-.6v-2.1c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.3.9.1-.7.4-1.2.7-1.5-2.5-.3-5.2-1.3-5.2-5.6 0-1.2.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3 0 0 1-.3 3.2 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.2-1.5 3.2-1.2 3.2-1.2.6 1.5.2 2.7.1 3 .7.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.3-5.2 5.6.4.3.8 1 .8 2.1v3.2c0 .4.2.7.8.6A11.2 11.2 0 0 0 23.2 12 11.2 11.2 0 0 0 12 .8Z"/></svg>
+              </span>
+              <span>GitHub</span>
+            </a>
+            <a class="button" href="#citation">
+              <span class="button-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M7 4h11v3H9v3h8v3H9v4h9v3H7V4ZM4 4h2v16H4V4Z"/></svg>
+              </span>
+              <span>BibTeX</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="teaser-section" aria-labelledby="teaser-title">
+        <div class="container">
+          <figure class="teaser">
+            <img
+              src="assets/images/teaser.webp"
+              alt="Overview of differentiable layer-specific prompt fusion discovery."
+            />
+            <figcaption id="teaser-title">
+              Layer-specific prompt fusion treats prompt injection as a searchable design problem, letting each transformer depth select the operator that best matches its representation role.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="abstract" class="section">
+        <div class="container text-grid">
+          <div>
+            <p class="section-kicker">Abstract</p>
+            <h2>The best prompt fusion rule changes with depth.</h2>
+          </div>
+          <div class="prose">
+            <p>Visual prompt tuning often uses a fixed fusion strategy across all transformer layers, even though shallow, middle, and deep layers encode different types of visual information.</p>
+            <p>This work formulates prompt fusion as a differentiable architecture search problem over operators such as concatenation, addition, affine fusion, and cross-attention. A bilevel optimization procedure discovers a hybrid layer-wise fusion policy that improves transfer while keeping parameter cost low.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-soft">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-kicker">Three claims</p>
+            <h2>What this paper changes</h2>
+          </div>
+          <div class="claim-grid">
+            <article class="claim-card">
+              <span class="claim-index">01</span>
+              <h3>Fusion is layer dependent.</h3>
+              <p>Early, middle, and late transformer blocks benefit from different prompt-token interactions.</p>
+            </article>
+            <article class="claim-card">
+              <span class="claim-index">02</span>
+              <h3>Search beats manual fusion.</h3>
+              <p>Differentiable selection finds hybrid fusion paths that outperform the best single fixed operator.</p>
+            </article>
+            <article class="claim-card">
+              <span class="claim-index">03</span>
+              <h3>Prompt efficiency is preserved.</h3>
+              <p>The searched design reaches strong transfer performance while tuning roughly 0.75% of model parameters.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="method" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-kicker">Method</p>
+            <h2>Differentiable search over prompt fusion operators</h2>
+          </div>
+
+          <div class="method-flow" aria-label="Method steps">
+            <article>
+              <h3>Candidate operators</h3>
+              <p>Each layer can choose among concatenation, addition, affine fusion, and cross-attention-style prompt interactions.</p>
+            </article>
+            <article>
+              <h3>Bilevel search</h3>
+              <p>Architecture weights and prompt parameters are optimized on separate splits to discover robust fusion policies.</p>
+            </article>
+            <article>
+              <h3>Discrete deployment</h3>
+              <p>The final layer-wise policy is discretized, then trained as an efficient prompt module on top of the frozen backbone.</p>
+            </article>
+          </div>
+
+          <figure class="wide-figure">
+            <img
+              src="assets/images/method.webp"
+              alt="Differentiable search over prompt fusion operators"
+            />
+            <figcaption>
+              The search space assigns each transformer layer a prompt fusion operator, producing a hybrid policy instead of a fixed VPT-style injection rule.
+            </figcaption>
+          </figure>
+
+          <div class="equation-panel">
+            <p class="equation-label">Fusion Search</p>
+            <p class="equation">
+              argmin over layer-wise fusion choices: validation loss after prompt training
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="results" class="section section-soft">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-kicker">Results</p>
+            <h2>Searched fusion improves transfer across 34 datasets</h2>
+          </div>
+
+          <div class="metric-grid">
+            <article class="metric-card">
+              <strong>77.01</strong>
+              <span>Mean VTAB-1k score from the searched prompt fusion policy</span>
+            </article>
+            <article class="metric-card">
+              <strong>91.6</strong>
+              <span>FGVC average while tuning about 0.75% of parameters</span>
+            </article>
+            <article class="metric-card">
+              <strong>+7.58</strong>
+              <span>VTAB gain over VPT-Deep in the reported setting</span>
+            </article>
+            <article class="metric-card">
+              <strong>1.18x</strong>
+              <span>Search cost relative to VPT-Deep training with four candidates</span>
+            </article>
+          </div>
+
+          <div class="figure-grid">
+            <figure class="wide-figure">
+              <img
+                src="assets/images/results-ablation.webp"
+                alt="Performance comparison for layer-specific prompt fusion discovery."
+              />
+              <figcaption>
+                The searched hybrid policy consistently improves over fixed prompt fusion operators across transfer groups.
+              </figcaption>
+            </figure>
+            <figure class="wide-figure">
+              <img
+                src="assets/images/case-study.webp"
+                alt="Efficiency analysis for layer-specific prompt fusion."
+              />
+              <figcaption>
+                The final discrete architecture keeps inference overhead modest while benefiting from a richer search stage.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container split-panel">
+          <div>
+            <p class="section-kicker">Why it matters</p>
+            <h2>Prompt design should be discovered at the layer level.</h2>
+          </div>
+          <div class="prose">
+            <p>Frozen vision transformers are not homogeneous stacks; their layers specialize. A single prompt fusion rule therefore constrains adaptation in a way that is easy to overlook.</p>
+            <p>Layer-specific discovery gives parameter-efficient tuning a principled route to match fusion behavior with representation depth.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="citation" class="section section-soft">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-kicker">Citation</p>
+            <h2>Cite Prompt Fusion Discovery</h2>
+            <p class="section-note">
+              If our work is helpful to your research, please consider citing this paper. Thank you.
+            </p>
+          </div>
+          <div class="bibtex-card">
+            <button class="copy-button" type="button" data-copy-bib>
+              Copy BibTeX
+            </button>
+            <pre><code id="bibtex">@misc{xiao2026promptfusiondiscovery,
+  title        = {Layer-Specific Prompt Fusion Discovery via Differentiable Search in Vision Foundation Models},
+  author       = {Xi Xiao and Xingjian Li and Yunbei Zhang and Cheng Han and Tianming Liu and Tianyang Wang and Runmin Jiang and Jihun Hamm and Xiao Wang and Min Xu},
+  year         = {2026},
+  note         = {Project page: https://xixiaouab.github.io/Prompt-Fusion-Discovery/}
+}</code></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner footer-note">
+        <p>
+          Companion page to the Prompt Fusion Discovery paper. The project repository lives at
+          <a href="https://github.com/xixiaouab/Prompt-Fusion-Discovery" target="_blank" rel="noopener">Prompt-Fusion-Discovery</a>;
+          contributions are welcome. Layout follows common academic project-page
+          conventions, inspired by the
+          <a href="https://github.com/nerfies/nerfies.github.io" target="_blank" rel="noopener">Nerfies</a>
+          template. Page content released under
+          <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.
+        </p>
+        <a href="#top">Back to top</a>
+      </div>
+    </footer>
+
+    <script src="assets/site.js?v=6b4a7c1"></script>
+  </body>
+</html>
