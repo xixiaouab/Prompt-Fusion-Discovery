@@ -1,0 +1,31 @@
+model:
+  backbone: swin_base_patch4_window7_224.ms_in22k
+  pretrained: true
+  prompt_length: 10
+  affine_reduction: 4
+  cross_reduction: 4
+  share_fusion: true
+  sparse_topk: 4
+data:
+  root: data/task
+  manifest: data/task.csv
+  protocol: vtab
+  image_size: 224
+  resize_size: 256
+  num_workers: 4
+  split_seed: 42
+training:
+  search_epochs: 90
+  finetune_epochs: 10
+  alpha_warmup_epochs: 10
+  batch_size: 64
+  learning_rate: 0.001
+  weight_decay: 0.01
+  architecture_learning_rate: 0.0003
+  architecture_weight_decay: 0
+  architecture_grad_clip: 1.0
+  temperature_max: 5.0
+  temperature_min: 0.001
+  entropy_weight: 0.01
+  cost_weight: 0.05
+  seed: 0
